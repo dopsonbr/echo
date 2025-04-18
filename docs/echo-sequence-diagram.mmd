@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant User
+    participant Client as Angular Client
+    participant Server as Express API Server
+    participant DB as Database
+
+    User->>Client: Enter text input
+    User->>Client: Click submit button
+    
+    Note over Client: Start timer for processing time
+    
+    Client->>Client: Angular Component calls Service
+    Client->>Server: HttpClient POST /api/echo {text: "user input"}
+    
+    Server->>Server: Express Router handles request
+    Server->>Server: Echo Controller processes request
+    Server->>DB: Service logs request (timestamp, input)
+    DB-->>Server: Confirm log stored
+    
+    Server->>Server: Apply any transformations
+    
+    Server-->>Client: Response {echo: "user input", timestamp: "2025-04-18T12:34:56"}
+    
+    Note over Client: Calculate processing time
+    
+    Client->>Client: Service returns data to Component
+    Client->>Client: Component updates UI with results
+    
+    Client-->>User: Show echoed result with processing time
