@@ -45,7 +45,7 @@ Echo App is a lightweight, browser-based application that allows users to input 
 
 ### Frontend (Angular)
 
-The frontend application is built with Angular 17 and follows best practices for component structure, state management, and API communication:
+The frontend application is built with Angular 19 and follows best practices for component structure, state management, and API communication:
 
 ```
 echo-client/
@@ -127,7 +127,7 @@ The application uses vanilla JavaScript to:
 - Uses RxJS for reactive programming on the frontend
 - Angular's HttpClient for API communication
 - Express middleware for request handling and validation
-- Fully responsive design with Angular Material components
+- Fully responsive design with AntD
 
 ### Project Structure
 

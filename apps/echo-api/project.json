@@ -1,0 +1,26 @@
+{
+  "name": "echo-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/echo-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "echo-api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "echo-api:build:development"
+        },
+        "production": {
+          "buildTarget": "echo-api:build:production"
+        }
+      }
+    }
+  }
+}
