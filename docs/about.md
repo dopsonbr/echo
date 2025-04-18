@@ -120,7 +120,8 @@ The application uses vanilla JavaScript to:
 ## Technical Details
 
 - Built as a monorepo using Nx for efficient workflows and code sharing
-- Frontend implemented with Angular 17
+- Frontend implemented with Angular 19
+- ng-zorro-antd is used for the design system; can be installed with `npx nx g ng-zorro-antd:ng-add`
 - Backend powered by Express.js
 - Organized as a full-stack application with clear separation of concerns
 - Uses RxJS for reactive programming on the frontend
