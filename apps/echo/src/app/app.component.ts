@@ -9,32 +9,55 @@ import { EchoFormComponent } from './components/echo-form/echo-form.component';
     <div class="app-container">
       <header>
         <h1>Echo App</h1>
-        <p>Enter text below and see it echoed back with performance metrics</p>
       </header>
       <main>
         <app-echo-form></app-echo-form>
       </main>
+      <footer>
+        <p>© 2025 Echo App - Built with Angular and Express</p>
+      </footer>
     </div>
   `,
   styles: [`
     .app-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     
     header {
+      background: #3f51b5;
+      padding: 16px;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 32px;
     }
     
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      color: white;
+      font-size: 32px;
+      margin: 0;
     }
     
-    p {
-      color: rgba(0, 0, 0, 0.65);
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    footer {
+      background: #3f51b5;
+      padding: 16px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    
+    footer p {
+      color: white;
+      margin: 0;
+      font-size: 14px;
     }
   `]
 })

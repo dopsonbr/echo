@@ -25,85 +25,126 @@ import { EchoService, EchoResponse } from '../../services/echo.service';
   template: `
     <div class="echo-container">
       <div class="input-section">
-        <form nz-form [formGroup]="echoForm" (ngSubmit)="onSubmit()">
-          <nz-form-item>
-            <nz-form-control [nzErrorTip]="'Please input some text'">
-              <nz-textarea-count [nzMaxCharacterCount]="500">
-                <textarea
-                  formControlName="text"
-                  nz-input
-                  rows="4"
-                  placeholder="Enter text to echo..."
-                  [maxLength]="500"
-                ></textarea>
-              </nz-textarea-count>
-            </nz-form-control>
-          </nz-form-item>
-          <button
-            nz-button
-            nzType="primary"
-            [nzLoading]="isSubmitting"
-            [disabled]="!echoForm.valid"
-          >
-            SUBMIT
-          </button>
-        </form>
+        <div class="card">
+          <div class="card-header">New Echo</div>
+          <div class="card-content">
+            <form nz-form [formGroup]="echoForm" (ngSubmit)="onSubmit()">
+              <nz-form-item>
+                <nz-form-control [nzErrorTip]="'Please input some text'">
+                  <nz-textarea-count [nzMaxCharacterCount]="500">
+                    <textarea
+                      formControlName="text"
+                      nz-input
+                      rows="4"
+                      placeholder="Type something here..."
+                      [maxLength]="500"
+                    ></textarea>
+                  </nz-textarea-count>
+                </nz-form-control>
+              </nz-form-item>
+              <button
+                nz-button
+                nzType="primary"
+                [nzLoading]="isSubmitting"
+                [disabled]="!echoForm.valid"
+              >
+                SUBMIT
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
 
       <div class="results-section">
-        <h3>Results</h3>
-        <nz-list [nzDataSource]="results" [nzRenderItem]="resultItem" [nzBordered]="true">
-          <ng-template #resultItem let-item>
-            <nz-list-item>
-              <div class="result-item">
-                <div class="echo-text">{{ item.echo }}</div>
-                <div class="meta">
-                  <span>Processing Time: {{ item.processingTime }}ms</span>
-                  <span>{{ item.timestamp | date:'medium' }}</span>
-                </div>
-              </div>
-            </nz-list-item>
-          </ng-template>
-        </nz-list>
+        <div class="card">
+          <div class="card-header">Results</div>
+          <div class="card-content">
+            <nz-list [nzDataSource]="results" [nzRenderItem]="resultItem">
+              <ng-template #resultItem let-item>
+                <nz-list-item>
+                  <div class="result-item">
+                    <div class="echo-text">{{ item.echo }}</div>
+                    <div class="meta">
+                      <span>Processing Time: {{ item.processingTime }}ms</span>
+                      <span>{{ item.timestamp | date:'medium' }}</span>
+                    </div>
+                  </div>
+                </nz-list-item>
+              </ng-template>
+            </nz-list>
+          </div>
+        </div>
       </div>
     </div>
   `,
   styles: [`
     .echo-container {
       display: flex;
-      gap: 2rem;
-      padding: 2rem;
+      gap: 32px;
     }
     
     .input-section, .results-section {
       flex: 1;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     }
     
-    .input-section form {
+    .card-header {
+      background: #3f51b5;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border-radius: 4px 4px 0 0;
+    }
+    
+    .card-content {
+      padding: 24px;
+    }
+    
+    form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 16px;
     }
     
-    .result-item {
-      width: 100%;
+    textarea {
+      background: #f9f9f9;
+      border-radius: 4px;
+      resize: none;
+    }
+    
+    button {
+      align-self: flex-end;
+      min-width: 80px;
+    }
+    
+    :host ::ng-deep .ant-list-item {
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      padding: 16px;
     }
     
     .echo-text {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+      font-size: 18px;
+      margin-bottom: 8px;
     }
     
     .meta {
       display: flex;
       justify-content: space-between;
       color: rgba(0, 0, 0, 0.45);
-      font-size: 0.9rem;
+      font-size: 14px;
     }
     
     @media (max-width: 768px) {
       .echo-container {
         flex-direction: column;
+      }
+      
+      button {
+        width: 100%;
       }
     }
   `]

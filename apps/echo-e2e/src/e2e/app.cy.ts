@@ -147,4 +147,45 @@ describe('Echo App', () => {
     cy.get('.ant-message').should('be.visible');
     cy.get('.ant-message').should('contain', 'Failed to echo text');
   });
+
+  it('should match the design system colors', () => {
+    // Check header background color
+    cy.get('header').should('have.css', 'background').and('include', 'rgb(63, 81, 181)');
+    
+    // Check text colors
+    cy.get('h1').should('have.css', 'color', 'rgb(255, 255, 255)');
+    
+    // Submit a test message to check list item styling
+    cy.get('textarea').type('Test message');
+    cy.get('button').click();
+    cy.get('.ant-list-item').first().should('have.css', 'background-color', 'rgb(249, 249, 249)');
+  });
+
+  it('should have proper card styling', () => {
+    // Check input section card
+    cy.get('.input-section').should('have.css', 'background-color', 'rgb(255, 255, 255)');
+    cy.get('.input-section').should('have.css', 'border-radius', '4px');
+    
+    // Check results section card
+    cy.get('.results-section').should('have.css', 'background-color', 'rgb(255, 255, 255)');
+    cy.get('.results-section').should('have.css', 'border-radius', '4px');
+  });
+
+  it('should have proper spacing and layout', () => {
+    // Check container max width
+    cy.get('main').should('have.css', 'max-width', '1200px');
+    
+    // Check section spacing
+    cy.get('.echo-container').should('have.css', 'gap', '32px');
+    
+    // Check equal width sections in desktop view
+    cy.get('.input-section').should('have.css', 'flex', '1 1 0%');
+    cy.get('.results-section').should('have.css', 'flex', '1 1 0%');
+  });
+
+  it('should have proper footer styling', () => {
+    cy.get('footer').should('exist');
+    cy.get('footer').should('have.css', 'background').and('include', 'rgb(63, 81, 181)');
+    cy.get('footer p').should('have.css', 'color', 'rgb(255, 255, 255)');
+  });
 });
